@@ -1,0 +1,15 @@
+{
+  "name": "varsubst",
+  "version": "0.1.0",
+  "description": "Substitute variables into string",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/test.js",
+    "build": "jison varsubst.jison"
+  },
+  "author": "Nicolas Martinez",
+  "license": "ISC",
+  "devDependencies": {
+    "jison": "^0.4.18"
+  }
+}
