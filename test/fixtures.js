@@ -31,6 +31,16 @@ const basicTests = [
     context: { 'hello': 'world' }
   },
   {
+    template: 'hello $hello.world',
+    expected: 'hello earth',
+    context: { 'hello': { 'world': 'earth' } }
+  },
+  {
+    template: 'hello ${hello.world}',
+    expected: 'hello earth',
+    context: { 'hello': { 'world': 'earth' } }
+  },
+  {
     template: 'hello $${hello}',
     expected: 'hello ${hello}',
     context: { 'hello': 'world' }
@@ -143,6 +153,16 @@ const varDefault = [
     template: '${hello:-$$world}',
     expected: '$world',
     context: { world: 'other' }
+  },
+  {
+    template: '${hello:-$world.other}',
+    expected: 'earth',
+    context: { world: { other: 'earth' } }
+  },
+  {
+    template: '${hello:-${world.other}}',
+    expected: 'earth',
+    context: { world: { other: 'earth' } }
   },
   {
     template: '${hello:-$empty}',

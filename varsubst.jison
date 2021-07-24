@@ -12,6 +12,7 @@ string [^$}]+
 "$"                    return '$'
 "}"                    return '}'
 ":-"                   return ':-'
+"."                    return '.'
 {symbol}               return 'SYMBOL'
 {string}               return 'STRING'
 <<EOF>>                return 'EOF'
@@ -68,12 +69,19 @@ combined
 
 
 variable
-    : '${' SYMBOL ':-' combined '}'
-        {$$ = yy.context[$2] || $4;}
-    | '${' SYMBOL '}'
-        {$$ = yy.context[$2] || '';}
-    | '$' SYMBOL
-        {$$ = yy.context[$2] || '';}
+    : '${' symbol ':-' combined '}'
+        {$$ = $2 || $4;}
+    | '${' symbol '}'
+        {$$ = $2;}
+    | '$' symbol
+        {$$ = $2;}
+    ;
+
+symbol
+    : symbol '.' SYMBOL
+        {$$ = $1[$3] || '';}
+    | SYMBOL
+        {$$ = yy.context[$1] || '';}
     ;
 
 string
