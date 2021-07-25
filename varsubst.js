@@ -92,20 +92,23 @@ break;
 case 3: case 4: case 12:
 this.$ = $$[$0-1].concat($$[$0]);
 break;
-case 5: case 6: case 7: case 8: case 9: case 10: case 11: case 13: case 16: case 20:
+case 5: case 6: case 7: case 8: case 9: case 10: case 11: case 13: case 20:
 this.$ = $$[$0];
 break;
 case 14:
-this.$ = $$[$0-3] || $$[$0-1];
+this.$ = $$[$0-3] ? $$[$0-3].toString() : $$[$0-1];
 break;
 case 15:
-this.$ = $$[$0-1];
+this.$ = $$[$0-1].toString();
+break;
+case 16:
+this.$ = $$[$0].toString();
 break;
 case 17:
-this.$ = $$[$0-2][$$[$0]] || '';
+this.$ = $$[$0-2] ? ($$[$0-2][$$[$0]] != null ? $$[$0-2][$$[$0]] : '') : '';
 break;
 case 18:
-this.$ = yy.context[$$[$0]] || '';
+this.$ = yy.context[$$[$0]] != null ? yy.context[$$[$0]] : '';
 break;
 case 19:
 this.$ = '$';

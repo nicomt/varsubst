@@ -123,6 +123,44 @@ const basicTests = [
   }
 ]
 
+const varTypes = [
+  {
+    template: '$hello other',
+    expected: '[object Object] other',
+    context: { hello: {} }
+  },
+  {
+    template: '$hello other',
+    expected: '10 other',
+    context: { hello: 10 }
+  },
+  {
+    template: '$hello other',
+    expected: '0 other',
+    context: { hello: 0 }
+  },
+  {
+    template: '$hello other',
+    expected: 'false other',
+    context: { hello: false }
+  },
+  {
+    template: '$hello other',
+    expected: 'true other',
+    context: { hello: true }
+  },
+  {
+    template: '$hello other',
+    expected: ' other',
+    context: { hello: null }
+  },
+  {
+    template: '$hello other',
+    expected: ' other',
+    context: { hello: undefined }
+  },
+]
+
 const varObjectFields = [
   {
     template: 'hello $var.field',
@@ -216,5 +254,6 @@ const varDefault = [
 
 
 module.exports = basicTests
+  .concat(varTypes)
   .concat(varObjectFields)
   .concat(varDefault);

@@ -70,18 +70,18 @@ combined
 
 variable
     : '${' symbol ':-' combined '}'
-        {$$ = $2 || $4;}
+        {$$ = $2 ? $2.toString() : $4;}
     | '${' symbol '}'
-        {$$ = $2;}
+        {$$ = $2.toString();}
     | '$' symbol
-        {$$ = $2;}
+        {$$ = $2.toString();}
     ;
 
 symbol
     : symbol '.' SYMBOL
-        {$$ = $1[$3] || '';}
+        {$$ = $1 ? ($1[$3] != null ? $1[$3] : '') : '';}
     | SYMBOL
-        {$$ = yy.context[$1] || '';}
+        {$$ = yy.context[$1] != null ? yy.context[$1] : '';}
     ;
 
 string
