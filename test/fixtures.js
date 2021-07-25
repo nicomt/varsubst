@@ -13,47 +13,47 @@ const basicTests = [
   {
     template: '$hello',
     expected: 'world',
-    context: { 'hello': 'world' }
+    context: { hello: 'world' }
   },
   {
     template: '${hello}',
     expected: 'world',
-    context: { 'hello': 'world' }
+    context: { hello: 'world' }
   },
   {
     template: 'hello $hello',
     expected: 'hello world',
-    context: { 'hello': 'world' }
+    context: { hello: 'world' }
   },
   {
     template: 'hello ${hello}',
     expected: 'hello world',
-    context: { 'hello': 'world' }
+    context: { hello: 'world' }
   },
   {
     template: 'hello $hello.world',
     expected: 'hello earth',
-    context: { 'hello': { 'world': 'earth' } }
+    context: { hello: { 'world': 'earth' } }
   },
   {
     template: 'hello ${hello.world}',
     expected: 'hello earth',
-    context: { 'hello': { 'world': 'earth' } }
+    context: { hello: { 'world': 'earth' } }
   },
   {
     template: 'hello $${hello}',
     expected: 'hello ${hello}',
-    context: { 'hello': 'world' }
+    context: { hello: 'world' }
   },
   {
     template: 'hello $$hello',
     expected: 'hello $hello',
-    context: { 'hello': 'world' }
+    context: { hello: 'world' }
   },
   {
     template: 'hello $hello$hello',
     expected: 'hello worldworld',
-    context: { 'hello': 'world' }
+    context: { hello: 'world' }
   },
   {
     template: '$ENV{HOME}',
@@ -123,6 +123,44 @@ const basicTests = [
   }
 ]
 
+const varObjectFields = [
+  {
+    template: 'hello $var.field',
+    expected: 'hello world',
+    context: { var: { field: 'world' } }
+  },
+  {
+    template: 'hello ${var.field}',
+    expected: 'hello world',
+    context: { var: { field: 'world' } }
+  },
+  {
+    template: 'hello $hello.world.other',
+    expected: 'hello earth',
+    context: { hello: { world: { other: 'earth' } } }
+  },
+  {
+    template: 'hello ${hello.world.other}',
+    expected: 'hello earth',
+    context: { hello: { world: { other: 'earth' } } }
+  },
+  {
+    template: 'hello ${hello.world.other}',
+    expected: 'hello ',
+    context: { hello: { world: {} } }
+  },
+  {
+    template: 'hello ${hello.world.other}',
+    expected: 'hello ',
+    context: { hello: { world: 1 } }
+  },
+  {
+    template: 'hello ${hello.world.other}',
+    expected: 'hello ',
+    context: { hello: { world: null } }
+  },
+]
+
 const varDefault = [
   {
     template: '${hello:-world}',
@@ -176,4 +214,7 @@ const varDefault = [
   }
 ]
 
-module.exports = basicTests.concat(varDefault);
+
+module.exports = basicTests
+  .concat(varObjectFields)
+  .concat(varDefault);
