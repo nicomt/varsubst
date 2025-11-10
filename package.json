@@ -3,13 +3,17 @@
   "version": "0.1.0",
   "description": "Substitute variables into string",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "node test/test.js",
+    "test:types": "tsc --noEmit test/test-types.ts",
     "build": "jison varsubst.jison"
   },
   "author": "Nicolas Martinez",
   "license": "ISC",
   "devDependencies": {
-    "jison": "^0.4.18"
+    "@types/node": "^24.10.0",
+    "jison": "^0.4.18",
+    "typescript": "^5.9.3"
   }
 }
